@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artigo com Anúncios</title>
     <link rel="stylesheet" href="./style/main.css">
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -37,7 +38,10 @@
         <a href="#">Contato</a>
     </nav>
 
-    <div class="top-banner-ad">[ Anúncio horizontal 728x90 ]</div>
+    <div class="top-banner-ad"
+        style="color: #666;font-family: 'Courier New', Courier, monospace; text-transform: uppercase;">[ Publicidade ]
+        <div id="header" style="min-width:300px; min-height:50px;"></div>
+    </div>
 
     <div class="main">
         <div class="content">
@@ -91,6 +95,14 @@
                     sed velit libero. Nullam sed justo a nunc bibendum aliquam. Integer quis felis at diam gravida
                     convallis.</p>
 
+
+                <div class="top-banner-ad"
+                    style="color: #666;font-family: 'Courier New', Courier, monospace; text-transform: uppercase;">[
+                    Publicidade ]
+                    <div id="div-gpt-ad" style="width:300px; height:250px; background:#f0f0f0; margin: 20px auto;">
+                    </div>
+                </div>
+
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean gravida turpis nec bibendum gravida.
                     Fusce in massa sed felis ultricies egestas. Cras fermentum ex nec purus varius, in facilisis diam
                     lobortis.</p>
@@ -110,6 +122,34 @@
         <p>© 2025 - Todos os direitos reservados.</p>
         <div class="footer-ad">[ Banner Rodapé 728x90 ]</div>
     </footer>
+
+    <script>
+        window.googletag = window.googletag || { cmd: [] };
+
+        googletag.cmd.push(function () {
+            var sz = [[320, 50]];
+            if (window.innerWidth > 980) {
+                sz = [[970, 250]];
+            } else if (window.innerWidth > 768 && window.innerWidth < 980) {
+                sz = [[728, 90]];
+            }
+
+            googletag.defineSlot("/7542/parceiros/amomeupet", sz, "header")
+                .addService(googletag.pubads())
+                .setTargeting("pos", "first Position");
+
+            googletag.defineSlot('/123456789/exemplo', [300, 250], 'div-gpt-ad')
+                .addService(googletag.pubads());
+
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().setCentering(true);
+
+            googletag.enableServices();
+
+            googletag.display("header");
+            googletag.display("div-gpt-ad");
+        });
+    </script>
 
     <script src="./script/main.js"></script>
 </body>
