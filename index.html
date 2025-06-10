@@ -134,22 +134,41 @@
                 sz = [[728, 90]];
             }
 
-            googletag.defineSlot("/7542/parceiros/amomeupet", sz, "header")
+            var slotHeader = googletag.defineSlot("/7542/parceiros/amomeupet", sz, "header")
                 .addService(googletag.pubads())
                 .setTargeting("pos", "first Position");
 
-            googletag.defineSlot('/123456789/exemplo', [300, 250], 'div-gpt-ad')
+            var slotDivGPT = googletag.defineSlot('/123456789/exemplo', [300, 250], 'div-gpt-ad')
                 .addService(googletag.pubads());
 
             googletag.pubads().enableSingleRequest();
             googletag.pubads().setCentering(true);
-
             googletag.enableServices();
 
-            googletag.display("header");
-            googletag.display("div-gpt-ad");
+            function displaySlot(slotId) {
+                googletag.display(slotId);
+                googletag.pubads().refresh([googletag.pubads().getSlots().find(s => s.getSlotElementId() === slotId)]);
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        displaySlot(entry.target.id);
+
+                        observer.unobserve(entry.target);
+
+                        setInterval(() => {
+                            googletag.pubads().refresh([googletag.pubads().getSlots().find(s => s.getSlotElementId() === entry.target.id)]);
+                        }, 30000);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(document.getElementById('header'));
+            observer.observe(document.getElementById('div-gpt-ad'));
         });
     </script>
+
 
     <script src="./script/main.js"></script>
 </body>
